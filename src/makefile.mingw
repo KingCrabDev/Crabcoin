@@ -6,21 +6,21 @@ USE_UPNP:=0
 USE_WALLET:=1
 
 INCLUDEPATHS= \
- -I"C:\boost-1.50.0-mgw" \
+ -I"C:\boost-1.58.0-mgw" \
  -I"C:\db-4.8.30.NC-mgw\build_unix" \
- -I"C:\openssl-1.0.1c-mgw\include"
+ -I"C:\openssl-1.0.1t-mgw\include"
 
 LIBPATHS= \
- -L"C:\boost-1.50.0-mgw\stage\lib" \
+ -L"C:\boost-1.58.0-mgw\stage\lib" \
  -L"C:\db-4.8.30.NC-mgw\build_unix" \
- -L"C:\openssl-1.0.1c-mgw"
+ -L"C:\openssl-1.0.1t-mgw"
 
 LIBS= \
- -l boost_system-mgw44-mt-1_53 \
- -l boost_filesystem-mgw44-mt-1_53 \
- -l boost_program_options-mgw44-mt-1_53 \
- -l boost_thread-mgw44-mt-1_53 \
- -l boost_chrono-mgw44-mt-1_53 \
+ -l boost_system-mgw61-mt-1_58 \
+ -l boost_filesystem-mgw61-mt-1_58 \
+ -l boost_program_options-mgw61-mt-1_58 \
+ -l boost_thread-mgw61-mt-1_58 \
+ -l boost_chrono-mgw61-mt-1_58 \
  -l db_cxx \
  -l ssl \
  -l crypto
@@ -36,8 +36,8 @@ ifndef USE_UPNP
 	override USE_UPNP = -
 endif
 ifneq (${USE_UPNP}, -)
- INCLUDEPATHS += -I"C:\miniupnpc-1.6-mgw"
- LIBPATHS += -L"C:\miniupnpc-1.6-mgw"
+ INCLUDEPATHS += -I"C:\miniupnpc-1.9-mgw"
+ LIBPATHS += -L"C:\miniupnpc-1.9-mgw"
  LIBS += -l miniupnpc -l iphlpapi
  DEFS += -DSTATICLIB -DUSE_UPNP=$(USE_UPNP)
 endif
@@ -82,12 +82,21 @@ OBJS= \
     obj/scrypt-x86.o \
     obj/scrypt-x86_64.o \
     obj/chainparams.o \
+    obj/groestl.o \
     obj/blake.o \
     obj/bmw.o \
-    obj/groestl.o \
-    obj/jh.o \
+    obj/skein.o \
     obj/keccak.o \
-    obj/skein.o
+    obj/shavite.o \
+    obj/jh.o \
+    obj/luffa.o \
+    obj/cubehash.o \
+    obj/echo.o \
+    obj/simd.o \
+    obj/hamsi.o \
+    obj/fugue.o \
+    obj/shabal.o\
+    obj/whirlpool.o
 
 ifeq (${USE_WALLET}, 1)
     DEFS += -DENABLE_WALLET
