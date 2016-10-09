@@ -964,15 +964,17 @@ int64_t GetProofOfWorkReward(int64_t nHeight, int64_t nFees)
     {
         nSubsidy = 100000 * COIN;
     }
+    else if(nHeight >= 15)
+    {
+        nSubsidy = 97 * COIN;
+    }
     else if(nHeight > 11)
     {
+        if(nHeight < 15)
+        {
         nSubsidy = 97;
+        }
     }
-    else if(nHeight > 10)
-    {
-        nSubsidy = 0.1 * COIN;
-    }
-
 
     LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
 
